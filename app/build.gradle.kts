@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.multiply.kids"
+    namespace = "ru.rrawww.multiply"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.multiply.kids"
+        applicationId = "ru.rrawww.multiply"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -19,18 +19,14 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("../multiply-release.jks")
-            storePassword = "multiply123"
-            keyAlias = "multiply"
-            keyPassword = "multiply123"
+            storeFile = file("multiply-release.jks")
+            storePassword = System.getenv("STORE_PASSWORD") ?: ""
+            keyAlias = System.getenv("KEY_ALIAS") ?: ""
+            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
         }
     }
 
     buildTypes {
-        debug {
-            // Эмулятор: 10.0.2.2, реальное устройство: IP вашего сервера
-            buildConfigField("String", "SERVER_URL", "\"http://10.0.2.2:8000\"")
-        }
         release {
             isMinifyEnabled = true
             signingConfig = signingConfigs.getByName("release")
@@ -38,8 +34,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Замените на реальный адрес сервера перед релизом
-            buildConfigField("String", "SERVER_URL", "\"http://YOUR_SERVER_IP:8000\"")
         }
     }
 
@@ -54,7 +48,6 @@ android {
 
     buildFeatures {
         compose = true
-        buildConfig = true
     }
 }
 
@@ -82,11 +75,6 @@ dependencies {
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.1.1")
-
-    // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
