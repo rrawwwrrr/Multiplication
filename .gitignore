@@ -1,0 +1,44 @@
+# Build outputs
+build/
+app/build/
+*.apk
+*.aab
+*.ap_
+
+# Gradle
+.gradle/
+gradle.properties.local
+local.properties
+
+# Signing keys
+*.jks
+*.keystore
+
+# IDE
+.idea/workspace.xml
+.idea/deploymentTargetSelector.xml
+.idea/caches/
+*.iml
+
+# Heap dumps
+*.hprof
+
+# OS
+.DS_Store
+Thumbs.db
+
+# xfarm / test infrastructure (not part of the app)
+conftest.py
+requirements.txt
+pytest.ini
+tests/
+xfarm-cli.sh
+xfarm-cli_old.sh
+xfarm-config.yml
+xfarm-capabilities-*.json
+xfarm-cli.log
+xfarm_temp_*/
+farmtest/
+multiply-server/
+xfarm-cli/
+.claude/

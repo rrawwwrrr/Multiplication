@@ -1,0 +1,5 @@
+-keep class com.multiply.kids.data.remote.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn okhttp3.**
+-dontwarn retrofit2.**
